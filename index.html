@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parvathy & Anandu · 31 January 2027</title>
+<meta name="description" content="With the blessings of our families, we invite you to celebrate the wedding of Parvathy and Anandu.">
+<meta name="theme-color" content="#9a2323">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- ============ INTRO / ENVELOPE SCREEN ============ -->
+<section class="intro" id="intro" aria-label="Invitation cover">
+  <div class="intro-frame"></div>
+  <div class="intro-inner">
+    <div class="om" aria-hidden="true">ॐ</div>
+    <p class="eyebrow">A Wedding Invitation</p>
+    <h1 class="intro-names">Parvathy<span class="amp">&amp;</span>Anandu</h1>
+    <p class="intro-date">31 · 01 · 2027</p>
+    <div class="ornament" aria-hidden="true"><span>✦</span><i></i><span>❋</span><i></i><span>✦</span></div>
+    <p class="intro-blessing">With the blessings of our families<br>and the grace of the Almighty</p>
+    <button class="btn btn-gold" id="openBtn">Open Invitation <span aria-hidden="true">→</span></button>
+  </div>
+  <p class="intro-side" aria-hidden="true">Pravasa / A New Chapter</p>
+</section>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="logo"><span class="om-sm" aria-hidden="true">ॐ</span><span>P &amp; A</span></a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav-links" id="navLinks">
+    <a href="#story">Story</a>
+    <a href="#events">Events</a>
+    <a href="#venue">Venue</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+  <span class="nav-dot" aria-hidden="true"></span>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-frame"></div>
+  <div class="hero-inner">
+    <p class="eyebrow gold">A celebration of love · Kerala · 2027</p>
+    <h2 class="hero-names">Parvathy<small>and</small>Anandu</h2>
+    <p class="hero-sub">Two lives, one beautiful promise.<br>Come witness the beginning of ours.</p>
+    <a href="#story" class="eyebrow gold link">Discover our story ↓</a>
+  </div>
+
+  <div class="badge" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+      <text><textPath href="#circ" startOffset="0">31 · 01 · 27 &nbsp;✦&nbsp; TK Convention Centre &nbsp;✦&nbsp; Thiruvananthapuram &nbsp;✦&nbsp;</textPath></text>
+    </svg>
+    <span class="badge-om">ॐ</span>
+  </div>
+
+  <div class="hero-foot">
+    <span>Scroll to wander</span><i></i><span>01 / 08</span>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>With the blessings of our families</span><b>◆</b><span>We begin forever</span><b>◆</b>
+    <span>With the blessings of our families</span><b>◆</b><span>We begin forever</span><b>◆</b>
+    <span>With the blessings of our families</span><b>◆</b><span>We begin forever</span><b>◆</b>
+    <span>With the blessings of our families</span><b>◆</b><span>We begin forever</span><b>◆</b>
+  </div>
+</div>
+
+<!-- ============ STORY ============ -->
+<section class="section cream" id="story">
+  <div class="wrap story-grid">
+    <div>
+      <p class="label"><em>01</em> Our story</p>
+      <h2 class="display reveal">A little bit of <i>serendipity,</i> a lifetime of <i>togetherness.</i></h2>
+    </div>
+    <div class="story-text reveal">
+      <p>With the blessings of our families and the grace of the Almighty, we joyfully invite you to celebrate the wedding of our daughter and son.</p>
+      <p>From the first hello to this forever, every step has led us here.</p>
+      <p class="monogram">P &amp; A</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PEOPLE ============ -->
+<section class="section maroon" id="people">
+  <div class="wrap">
+    <p class="label light"><em>02</em> The people</p>
+    <div class="people-grid">
+      <article class="person bride reveal">
+        <div class="portrait"><span class="ring-initial">P</span></div>
+        <p class="role">The Bride</p>
+        <h3>Parvathy</h3>
+        <button class="btn btn-ghost flower-btn" data-who="Parvathy">Send her a flower ❀</button>
+      </article>
+      <article class="person groom reveal">
+        <div class="portrait gold-disc"><span class="om-big">ॐ</span></div>
+        <p class="role">The Groom</p>
+        <h3>Anandu <small>R. Nair</small></h3>
+        <button class="btn btn-ghost dark flower-btn" data-who="Anandu">Send him a flower ❀</button>
+      </article>
+    </div>
+    <p class="flower-count" id="flowerCount" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="section cream" id="events">
+  <div class="wrap">
+    <p class="label"><em>03</em> Mark your calendar</p>
+    <div class="events-head">
+      <h2 class="display reveal">A day in <i>three movements.</i></h2>
+      <p class="side-note">Keep the date close. Every moment has been planned with love.</p>
+    </div>
+    <ul class="events">
+      <li class="reveal"><span class="num">01</span>
+        <div><h3>Sweekaranam</h3><p>A warm beginning with family, laughter and blessings.</p></div>
+        <time>31 Jan 2027 · 10:30 AM</time></li>
+      <li class="reveal"><span class="num">02</span>
+        <div><h3>Muhurtham</h3><p>The sacred wedding ceremony in the presence of the divine.</p></div>
+        <time>31 Jan 2027 · 11:00 – 12:25 PM</time></li>
+      <li class="reveal"><span class="num">03</span>
+        <div><h3>The Gathering</h3><p>Join us for a meal, music and the joy of being together.</p></div>
+        <time>31 Jan 2027 · 12:30 PM onwards</time></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="section red" id="countdown">
+  <div class="wrap count-grid">
+    <div>
+      <p class="label light">Until the auspicious hour</p>
+      <h2 class="display light reveal">Counting down</h2>
+    </div>
+    <div class="timer" id="timer" role="timer" aria-live="off">
+      <div><b id="cd-d">00</b><span>Days</span></div>
+      <div><b id="cd-h">00</b><span>Hours</span></div>
+      <div><b id="cd-m">00</b><span>Minutes</span></div>
+      <div><b id="cd-s">00</b><span>Seconds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENUE ============ -->
+<section class="venue" id="venue">
+  <div class="venue-art">
+    <div class="venue-seal"><b>TK</b><span>Venue</span></div>
+  </div>
+  <div class="venue-info">
+    <p class="label light"><em>04</em> Find us</p>
+    <p class="role gold">The Venue</p>
+    <h2 class="display light reveal">TK Convention <i>Centre</i></h2>
+    <address>Venjaramooda Road<br>Pothencode, Thiruvananthapuram<br>Kerala 695615</address>
+    <a class="btn btn-gold" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/search/?api=1&query=TK+Convention+Centre+Pothencode+Thiruvananthapuram">Get directions ↗</a>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section cream-2" id="gallery">
+  <div class="wrap">
+    <p class="label"><em>05</em> Little moments</p>
+    <div class="events-head">
+      <h2 class="display reveal">Frames of <i>joy.</i></h2>
+      <p class="side-note">Some memories are better felt than explained.</p>
+    </div>
+    <!-- Drop your photos into /images as g1.jpg … g5.jpg to replace the gradients -->
+    <div class="mosaic">
+      <figure class="tile t1 reveal" style="--img:url(images/g1.jpg)"><figcaption>The invitation</figcaption></figure>
+      <figure class="tile t2 reveal" style="--img:url(images/g2.jpg)"><figcaption>A new chapter</figcaption></figure>
+      <figure class="tile t3 reveal" style="--img:url(images/g3.jpg)"><figcaption>Forever begins</figcaption></figure>
+      <figure class="tile t4 reveal" style="--img:url(images/g4.jpg)"><figcaption>Joy in bloom</figcaption></figure>
+      <figure class="tile t5 reveal" style="--img:url(images/g5.jpg)"><figcaption>Celebrate</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RSVP ============ -->
+<section class="section red" id="rsvp">
+  <div class="wrap rsvp-grid">
+    <div class="rsvp-circle reveal"><p>Will you be joining<br><em>our celebration?</em></p></div>
+    <div>
+      <p class="label light"><em>06</em> RSVP</p>
+      <h2 class="display light reveal">Your <i>presence</i></h2>
+      <p class="rsvp-text">We would be honoured to have you with us as we begin this new chapter.</p>
+      <div class="rsvp-btns" role="group" aria-label="RSVP">
+        <button class="btn btn-ghost" id="rsvpYes" aria-pressed="false">I am participating ✓</button>
+        <button class="btn btn-ghost" id="rsvpNo" aria-pressed="false">I cannot make it</button>
+      </div>
+      <p class="rsvp-msg" id="rsvpMsg" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MESSAGE ============ -->
+<section class="section cream" id="message">
+  <div class="wrap msg-grid">
+    <div>
+      <p class="label"><em>07</em> A note for us</p>
+      <h2 class="display reveal">Say <i>hello.</i></h2>
+      <p class="side-note left">Leave a wish, a memory, or a message? We would love to hear it.</p>
+    </div>
+    <form id="msgForm" novalidate>
+      <label>Your name
+        <input type="text" name="name" placeholder="Full name" required autocomplete="name"></label>
+      <label>Phone number
+        <input type="tel" name="phone" placeholder="+91 …" autocomplete="tel"></label>
+      <label>Your message
+        <textarea name="message" rows="3" placeholder="Write us a little note…" required></textarea></label>
+      <button class="btn btn-gold" type="submit">Send message →</button>
+      <p class="form-note" id="formNote">Your details are used only to reply to your message.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span class="om-sm" aria-hidden="true">ॐ</span>
+  <span class="foot-mid">Parvathy &amp; Anandu · 31 January 2027</span>
+  <span class="foot-right">With love, always.
+    <button id="musicBtn" aria-pressed="false">▶ Play the record</button></span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
