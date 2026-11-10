@@ -19,6 +19,44 @@
 
   /* ---------- intro ---------- */
   const intro = $('#intro');
+  const introAudio = new Audio('assets/wedding_audio.mp3');
+  introAudio.loop = true;
+  introAudio.volume = .45;
+  const startWeddingAudio = () => {
+    if (!introAudio || typeof introAudio.play !== 'function') return;
+    introAudio.play().catch(() => {});
+  };
+  window.addEventListener('load', startWeddingAudio);
+  window.addEventListener('pointerdown', startWeddingAudio, { once: true });
+  window.addEventListener('keydown', startWeddingAudio, { once: true });
+
+  const introFlowers = $('#introFlowers');
+  if (introFlowers && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const styles = [
+      { className: 'rose', glyph: '❀' },
+      { className: 'jasmine', glyph: '✿' },
+      { className: 'nerium', glyph: '✾' }
+    ];
+    const spawnIntroFlowers = () => {
+      const count = 6 + Math.floor(Math.random() * 6);
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('span');
+        const style = styles[Math.floor(Math.random() * styles.length)];
+        flower.className = `falling-flower ${style.className}`;
+        flower.textContent = style.glyph;
+        flower.style.left = `${Math.random() * 100}%`;
+        flower.style.setProperty('--drift', `${(Math.random() * 160) - 80}px`);
+        flower.style.setProperty('--dur', `${7 + Math.random() * 6}s`);
+        flower.style.fontSize = `${.8 + Math.random() * 1.1}rem`;
+        flower.style.animationDelay = `${Math.random() * 1.2}s`;
+        introFlowers.appendChild(flower);
+        setTimeout(() => flower.remove(), 15000);
+      }
+    };
+    setTimeout(spawnIntroFlowers, 650);
+    setInterval(spawnIntroFlowers, 1800);
+  }
+
   const openInvitation = () => {
     intro.classList.add('gone');
     document.body.classList.remove('locked');
