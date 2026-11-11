@@ -19,16 +19,41 @@
 
   /* ---------- intro ---------- */
   const intro = $('#intro');
-  const introAudio = new Audio('assets/wedding_audio.mp3');
-  introAudio.loop = true;
+  const introAudio = $('#introAudio');
   introAudio.volume = .45;
-  const startWeddingAudio = () => {
-    if (!introAudio || typeof introAudio.play !== 'function') return;
-    introAudio.play().catch(() => {});
+  const introAudioBtn = $('#introAudioBtn');
+  let introAudioRequested = false;
+  let introAudioRequestId = 0;
+  const syncIntroAudioControl = () => {
+    const isPlaying = !introAudio.paused;
+    introAudioBtn.setAttribute('aria-pressed', String(isPlaying));
+    introAudioBtn.setAttribute('aria-label', `${isPlaying ? 'Pause' : 'Play'} wedding music`);
   };
-  window.addEventListener('load', startWeddingAudio);
-  window.addEventListener('pointerdown', startWeddingAudio, { once: true });
-  window.addEventListener('keydown', startWeddingAudio, { once: true });
+  const playWeddingAudio = (notifyOnFailure = false) => {
+    introAudioRequested = true;
+    const requestId = ++introAudioRequestId;
+    introAudio.play().catch(error => {
+      if (requestId !== introAudioRequestId) return;
+      introAudioRequested = false;
+      syncIntroAudioControl();
+      if (error.name !== 'AbortError' && (notifyOnFailure || error.name !== 'NotAllowedError')) {
+        say('Wedding audio could not be played.');
+      }
+    });
+  };
+  const pauseWeddingAudio = () => {
+    introAudioRequestId++;
+    introAudioRequested = false;
+    introAudio.pause();
+    syncIntroAudioControl();
+  };
+  introAudio.addEventListener('playing', syncIntroAudioControl);
+  introAudio.addEventListener('pause', syncIntroAudioControl);
+  introAudioBtn.addEventListener('click', () => {
+    if (introAudioRequested) pauseWeddingAudio();
+    else playWeddingAudio(true);
+  });
+  playWeddingAudio();
 
   const introFlowers = $('#introFlowers');
   if (introFlowers && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
