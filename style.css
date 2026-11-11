@@ -18,7 +18,7 @@ body{font-family:var(--sans);font-weight:300;background:var(--cream);color:var(-
 body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;}
 em,i{font-style:italic}
 
 /* ---------- shared ---------- */
@@ -151,9 +151,11 @@ em,i{font-style:italic}
 .person h3{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;margin-bottom:1rem}
 .person h3 small{font-size:.5em;font-style:italic;opacity:.8}
 .portrait{width:clamp(160px,18vw,220px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;margin-bottom:1.2rem;
-  background:conic-gradient(from 30deg,#f1ead6,#c9486a,#f1ead6,#9a2323,#f1ead6);border:6px solid rgba(241,234,214,.25);box-shadow:inset 0 0 40px rgba(86,23,23,.35)}
-.ring-initial{font-family:var(--serif);font-size:4rem;color:var(--cream);text-shadow:0 2px 12px rgba(86,23,23,.6)}
-.gold-disc{background:radial-gradient(circle at 30% 30%,#e3bf85,#b98a4a 60%,#8f6630);border:0}
+  background:conic-gradient(from 30deg,#f1ead6,#c9486a,#f1ead6,#9a2323,#f1ead6);border:6px solid rgba(241,234,214,.25);box-shadow:inset 0 0 40px rgba(86,23,23,.35);overflow:hidden}
+.ring-initial{width:100%;height:100%;display:block;font-family:var(--serif);font-size:4rem;color:var(--cream);text-shadow:0 2px 12px rgba(86,23,23,.6)}
+.om-parvathy{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.om-anandu{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.gold-disc{background:radial-gradient(circle at 30% 30%,#e3bf85,#b98a4a 60%,#8f6630);border:1}
 .om-big{font-size:4.2rem;color:rgba(255,255,255,.5)}
 .flower-count{text-align:center;margin-top:2rem;font-family:var(--serif);font-style:italic;color:var(--gold);min-height:1.6em}
 
