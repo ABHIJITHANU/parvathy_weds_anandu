@@ -2,6 +2,10 @@
   'use strict';
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  // content protection: disable right click, drag, and text selection
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
+  // end
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
@@ -53,7 +57,14 @@
     if (introAudioRequested) pauseWeddingAudio();
     else playWeddingAudio(true);
   });
-  playWeddingAudio();
+  const startAudioOnFirstInteraction = event => {
+    document.removeEventListener('pointerdown', startAudioOnFirstInteraction);
+    document.removeEventListener('keydown', startAudioOnFirstInteraction);
+    if (event.target instanceof Element && event.target.closest('#introAudioBtn')) return;
+    playWeddingAudio();
+  };
+  document.addEventListener('pointerdown', startAudioOnFirstInteraction);
+  document.addEventListener('keydown', startAudioOnFirstInteraction);
 
   const introFlowers = $('#introFlowers');
   if (introFlowers && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
