@@ -280,6 +280,9 @@ form .btn{align-self:flex-start}
 @media (max-width:800px){
   .bell{width:70px}
 }
+@media (max-width:600px){
+  .intro-blessing-malayalam{font-size:.65rem}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none}
