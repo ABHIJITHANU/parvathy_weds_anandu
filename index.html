@@ -157,10 +157,10 @@
     <ul class="events">
       <li class="reveal"><span class="num">01</span>
         <div><h3>Sweekaranam</h3><p>A warm beginning with family, laughter and blessings.</p></div>
-        <time>31 Jan 2027 · 10:30 AM</time></li>
+        <time>31 Jan 2027 · 10:30 AM Onwards</time></li>
       <li class="reveal"><span class="num">02</span>
         <div><h3>Muhurtham</h3><p>The sacred wedding ceremony in the presence of the divine.</p></div>
-        <time>31 Jan 2027 · 11:00 – 12:25 PM</time></li>
+        <time>31 Jan 2027 · 11:00 AM – 12:25 PM</time></li>
       <li class="reveal"><span class="num">03</span>
         <div><h3>The Gathering</h3><p>Join us for a meal, music and the joy of being together.</p></div>
         <time>31 Jan 2027 · 12:30 PM onwards</time></li>
@@ -187,7 +187,8 @@
 <!-- ============ VENUE ============ -->
 <section class="venue" id="venue">
   <div class="venue-art">
-    <div class="venue-seal"><b>TK</b><span>Venue</span></div>
+    <!-- <div class="venue-seal"><b>TK</b><span>Venue</span></div> -->
+     <img class="venue-img" src="assets/venue.webp" alt="TK Convention Centre, Thiruvananthapuram" aria-hidden="true">
   </div>
   <div class="venue-info">
     <p class="label light"><em>04</em> Find us</p>
@@ -207,16 +208,28 @@
       <h2 class="display reveal">Frames of <i>joy.</i></h2>
       <p class="side-note">Some memories are better felt than explained.</p>
     </div>
-    <!-- Drop your photos into /images as g1.jpg … g5.jpg to replace the gradients -->
     <div class="mosaic">
-      <figure class="tile t1 reveal" style="--img:url(images/g1.jpg)"><figcaption>The invitation</figcaption></figure>
-      <figure class="tile t2 reveal" style="--img:url(images/g2.jpg)"><figcaption>A new chapter</figcaption></figure>
-      <figure class="tile t3 reveal" style="--img:url(images/g3.jpg)"><figcaption>Forever begins</figcaption></figure>
-      <figure class="tile t4 reveal" style="--img:url(images/g4.jpg)"><figcaption>Joy in bloom</figcaption></figure>
-      <figure class="tile t5 reveal" style="--img:url(images/g5.jpg)"><figcaption>Celebrate</figcaption></figure>
+      <figure class="tile t1 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: The invitation" data-gallery-src="assets/marriage_letter.jpeg" style="--img:url(assets/marriage_letter.jpeg)"><figcaption>The invitation</figcaption></figure>
+      <figure class="tile t2 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: A new chapter" data-gallery-src="assets/pr_1.webp" style="--img:url(assets/pr_1.webp)"><figcaption>A new chapter</figcaption></figure>
+      <figure class="tile t3 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Forever begins" data-gallery-src="assets/pr_3.webp" style="--img:url(assets/pr_3.webp)"><figcaption>Forever begins</figcaption></figure>
+      <figure class="tile t4 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Joy in bloom" data-gallery-src="assets/anandu_family.webp" style="--img:url(assets/anandu_family.webp)"><figcaption>Joy in bloom</figcaption></figure>
+      <figure class="tile t5 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Celebrate" data-gallery-src="assets/parvathy_family.webp" style="--img:url(assets/parvathy_family.webp)"><figcaption>Celebrate</figcaption></figure>
     </div>
   </div>
 </section>
+
+<dialog class="lightbox" id="photoViewer" aria-label="Photo viewer">
+  <div class="lightbox-panel">
+    <button class="lightbox-close" type="button" aria-label="Close photo viewer">×</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous photo">‹</button>
+    <img class="lightbox-image" id="lightboxImage" alt="">
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo">›</button>
+    <div class="lightbox-caption">
+      <p id="lightboxTitle"></p>
+      <span id="lightboxCount" aria-live="polite"></span>
+    </div>
+  </div>
+</dialog>
 
 <!-- ============ RSVP ============ -->
 <section class="section red" id="rsvp">
@@ -262,7 +275,7 @@
   <span class="om-sm" aria-hidden="true">ॐ</span>
   <span class="foot-mid">Parvathy &amp; Anandu · 31 January 2027</span>
   <span class="foot-right">With love, always.
-    <button id="musicBtn" aria-pressed="false">▶ Play the record</button></span>
+    <!-- <button id="musicBtn" aria-pressed="false">▶ Play the record</button></span> -->
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

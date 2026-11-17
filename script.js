@@ -3,8 +3,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   // content protection: disable right click, drag, and text selection
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('dragstart', event => event.preventDefault());
+  // document.addEventListener('contextmenu', event => event.preventDefault());
+  // document.addEventListener('dragstart', event => event.preventDefault());
   // end
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -129,6 +129,51 @@
     el.style.transitionDelay = (i % 3) * 90 + 'ms';
     io ? io.observe(el) : el.classList.add('in');
   });
+
+  /* ---------- gallery lightbox ---------- */
+  const photoTiles = $$('.tile[data-gallery-src]');
+  const photoViewer = $('#photoViewer');
+  const lightboxImage = $('#lightboxImage');
+  const lightboxTitle = $('#lightboxTitle');
+  const lightboxCount = $('#lightboxCount');
+  const closePhotoViewer = $('.lightbox-close', photoViewer);
+  let activePhoto = 0;
+  let lastPhotoTrigger = null;
+  const showPhoto = index => {
+    activePhoto = (index + photoTiles.length) % photoTiles.length;
+    const tile = photoTiles[activePhoto];
+    const title = $('figcaption', tile).textContent.trim();
+    lightboxImage.src = tile.dataset.gallerySrc;
+    lightboxImage.alt = title;
+    lightboxTitle.textContent = title;
+    lightboxCount.textContent = `${activePhoto + 1} / ${photoTiles.length}`;
+  };
+  const openPhotoViewer = index => {
+    lastPhotoTrigger = photoTiles[index];
+    showPhoto(index);
+    photoViewer.showModal();
+    closePhotoViewer.focus();
+  };
+  photoTiles.forEach((tile, index) => {
+    tile.addEventListener('click', () => openPhotoViewer(index));
+    tile.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openPhotoViewer(index);
+      }
+    });
+  });
+  $('.lightbox-prev', photoViewer).addEventListener('click', () => showPhoto(activePhoto - 1));
+  $('.lightbox-next', photoViewer).addEventListener('click', () => showPhoto(activePhoto + 1));
+  closePhotoViewer.addEventListener('click', () => photoViewer.close());
+  photoViewer.addEventListener('click', event => {
+    if (event.target === photoViewer) photoViewer.close();
+  });
+  photoViewer.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') showPhoto(activePhoto - 1);
+    if (event.key === 'ArrowRight') showPhoto(activePhoto + 1);
+  });
+  photoViewer.addEventListener('close', () => lastPhotoTrigger?.focus());
 
   /* ---------- countdown (31 Jan 2027, 10:30 IST) ---------- */
   const target = new Date('2027-01-31T10:30:00+05:30').getTime();
