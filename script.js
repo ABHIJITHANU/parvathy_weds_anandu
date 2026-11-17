@@ -3,8 +3,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   // content protection: disable right click, drag, and text selection
-  // document.addEventListener('contextmenu', event => event.preventDefault());
-  // document.addEventListener('dragstart', event => event.preventDefault());
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
   // end
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -237,8 +237,14 @@
 
   /* ---------- message form ---------- */
   const form = $('#msgForm');
-  form.addEventListener('submit', e => {
+  const submitButton = $('button[type="submit"]', form);
+  const emailJsServiceId = 'service_bfjl9ed';
+  const emailJsTemplateId = 'template_bmeuqhu';
+  const emailJsPublicKey = 'AZiGPDpgobvB_N4hd';
+  let isSending = false;
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+    if (isSending) return;
     const { name, phone, message } = form.elements;
     let ok = true;
     [name, message].forEach(f => {
@@ -251,12 +257,34 @@
     if (badPhone) ok = false;
     if (!ok) return say('Please check the highlighted fields.');
 
-    // Saved locally. Connect to your own backend / form service here.
+    const nameValue = name.value.trim();
+    const phoneValue = phone.value.trim();
+    const messageValue = message.value.trim();
+    isSending = true;
+    submitButton.disabled = true;
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    try {
+      await emailjs.send(emailJsServiceId, emailJsTemplateId, {
+        name: nameValue,
+        phone: phoneValue,
+        message: messageValue
+      }, { publicKey: emailJsPublicKey });
+    } catch (error) {
+      console.error('EmailJS message send failed:', error);
+      say('Your message could not be sent. Please try again.');
+      return;
+    } finally {
+      isSending = false;
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+
     const all = store.get('pa-messages', []);
-    all.push({ name: name.value.trim(), phone: phone.value.trim(), message: message.value.trim(), at: new Date().toISOString() });
+    all.push({ name: nameValue, phone: phoneValue, message: messageValue, at: new Date().toISOString() });
     store.set('pa-messages', all);
     form.reset();
-    say('Thank you for your lovely message ❀');
+    say('Your message was sent. Thank you for your lovely message ❀');
   });
   $$('input,textarea', form).forEach(f => f.addEventListener('input', () => f.classList.remove('err')));
 
