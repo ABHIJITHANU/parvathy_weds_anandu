@@ -104,7 +104,7 @@ em,i{font-style:italic}
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--pad);color:var(--cream);transition:background .4s,padding .4s}
 .nav.scrolled{background:rgba(86,23,23,.94);backdrop-filter:blur(8px);padding:.8rem var(--pad)}
 .logo{display:flex;gap:.7rem;align-items:center;font-size:.72rem;letter-spacing:.3em}
-.om-sm{color:var(--gold);font-size:1rem}
+.om-sm{display:block;width:1.15rem;height:1.15rem;object-fit:contain;flex:none}
 .nav-links{display:flex;gap:2.4rem;position:absolute;left:50%;transform:translateX(-50%)}
 .nav-links a{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;opacity:.85;position:relative;padding:.3rem 0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .35s var(--ease)}
@@ -126,7 +126,7 @@ em,i{font-style:italic}
 .badge{position:absolute;top:18%;right:clamp(1.5rem,7vw,6rem);width:clamp(100px,12vw,160px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(217,174,106,.4);display:grid;place-items:center}
 .badge svg{position:absolute;inset:-4%;width:108%;height:108%;animation:spin 28s linear infinite}
 .badge text{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;fill:var(--gold);font-family:var(--sans)}
-.badge-om{color:var(--gold);font-size:1.4rem}
+.badge-om{display:block;width:clamp(1.6rem,2.4vw,2.2rem);height:auto;object-fit:contain}
 @keyframes spin{to{transform:rotate(360deg)}}
 .hero-foot{position:absolute;left:clamp(2rem,4vw,3.5rem);right:clamp(2rem,4vw,3.5rem);bottom:2.2rem;display:flex;align-items:center;gap:1.2rem;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
 .hero-foot i{flex:1;height:1px;background:rgba(241,234,214,.35)}
