@@ -19,6 +19,8 @@ body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{max-width:100%;}
+img,svg,video,canvas{display:block}
+button,a,input,textarea{touch-action:manipulation}
 em,i{font-style:italic}
 
 /* ---------- shared ---------- */
@@ -181,12 +183,13 @@ em,i{font-style:italic}
 
 /* ---------- venue ---------- */
 .venue{display:grid;grid-template-columns:1fr 1fr;background:var(--maroon);color:var(--cream);min-height:520px}
-.venue-art{position:relative;min-height:340px;
+.venue-art{position:relative;min-height:340px;overflow:hidden;
   background:
    radial-gradient(circle at 25% 70%,rgba(200,148,63,.55),transparent 45%),
    radial-gradient(circle at 75% 25%,rgba(154,35,35,.7),transparent 50%),
    linear-gradient(135deg,#3b2a1c,#6b4a2c 45%,#2f3a2a);
   background-size:cover;display:grid;place-items:center}
+.venue-img{width:100%;height:100%;min-height:340px;object-fit:cover}
 .venue-seal{width:150px;aspect-ratio:1;border-radius:50%;border:1px solid rgba(217,174,106,.7);background:rgba(120,50,30,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 .venue-seal b{font-family:var(--serif);font-weight:300;font-size:3rem;color:var(--cream);line-height:1;opacity:.85}
 .venue-seal span{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
@@ -271,22 +274,22 @@ form .btn{align-self:flex-start}
 @keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));opacity:.2}}
 
 /* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .nav-links{gap:1.35rem}
+  .story-grid{gap:2.5rem}
+  .events li{grid-template-columns:70px 1fr auto}
+  .badge{right:2rem}
+}
 @media (max-width:900px){
   .burger{display:block}
-  @media (max-width:600px){
-    .lightbox{width:calc(100% - 1rem);max-height:calc(100dvh - 1rem)}
-    .lightbox-panel{max-height:calc(100dvh - 1rem)}
-    .lightbox-image{height:72dvh}
-    .lightbox-nav{width:2.4rem;height:2.4rem}
-    .lightbox-prev{left:.5rem}
-    .lightbox-next{right:.5rem}
-  }
+  .nav{padding:.85rem var(--pad)}
   .nav-dot{display:none}
   .nav-links{position:fixed;inset:0;left:0;transform:none;flex-direction:column;justify-content:center;align-items:center;gap:2rem;background:var(--maroon);opacity:0;pointer-events:none;transition:opacity .4s}
   .nav-links.open{opacity:1;pointer-events:auto}
   .nav-links a{font-size:.9rem}
+  .nav-links a{min-height:44px;display:grid;place-items:center}
   .story-grid,.rsvp-grid,.msg-grid{grid-template-columns:1fr;gap:2.5rem}
-  .story-text{justify-self:start}
+  .story-text{justify-self:start;max-width:40ch}
   .people-grid{grid-template-columns:1fr}
   .person{min-height:420px}
   .events li{grid-template-columns:44px 1fr;gap:.4rem 1rem}
@@ -294,21 +297,94 @@ form .btn{align-self:flex-start}
   .events-head{flex-direction:column;align-items:flex-start;gap:1.2rem}
   .venue{grid-template-columns:1fr}
   .venue-art{min-height:280px}
+  .venue-img{min-height:280px}
   .badge{top:auto;bottom:6.5rem;right:1.2rem;width:90px}
   .rsvp-circle{margin:0 auto}
-  .timer{width:100%}.timer div{flex:1;min-width:0;padding:1rem .4rem}
+  .count-grid{align-items:flex-start}
+  .timer{width:100%}
+  .timer div{flex:1;min-width:0;padding:1rem .4rem}
   .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:44vw}
   .t1,.t2,.t3,.t4,.t5{grid-column:auto;grid-row:auto}
   .t1{grid-column:1/3;grid-row:span 2}
   .t4{grid-column:1/3}
   .intro-side{display:none}
   .footer{justify-content:center;text-align:center}
-}
-@media (max-width:800px){
-  .bell{width:70px}
+  .foot-mid,.foot-right{width:100%;justify-content:center;text-align:center}
 }
 @media (max-width:600px){
-  .intro-blessing-malayalam{font-size:.65rem}
+  :root{--pad:clamp(1rem,5vw,1.5rem)}
+  .section{padding:4.25rem 0}
+  .intro-inner{width:100%;max-height:100dvh;overflow-y:auto;padding:1.25rem 1rem;justify-content:center}
+  .intro-names{font-size:clamp(2.8rem,16vw,4.6rem)}
+  .intro-names .amp{margin:.45rem 0}
+  .intro-date{font-size:.62rem}
+  .intro-blessing-malayalam{font-size:.72rem}
+  .om{width:clamp(4rem,18vw,5.5rem)}
+  .bell{width:55px}
+  .lantern{width:52px}
+  .lantern-left{left:4%}
+  .lantern-right{right:4%}
+  .hero{padding:5.5rem 1rem 4.5rem}
+  .hero-names{font-size:clamp(3.4rem,18vw,5.5rem)}
+  .hero-sub{max-width:24ch}
+  .badge{display:none}
+  .hero-foot{left:1rem;right:1rem;bottom:1.25rem}
+  .hero-foot span:last-child{display:none}
+  .display{font-size:clamp(2.25rem,12vw,3.5rem)}
+  .people-grid{margin-left:calc(var(--pad) * -1);margin-right:calc(var(--pad) * -1)}
+  .person{min-height:390px;padding:2.5rem 1rem}
+  .portrait{width:150px}
+  .person h3{font-size:2.25rem}
+  .btn{min-height:44px;padding:.85rem 1.1rem;letter-spacing:.16em}
+  .events li{grid-template-columns:34px 1fr;padding:1.35rem 0}
+  .events h3{font-size:1.45rem}
+  .events p{margin-top:.25rem;font-size:.95rem}
+  .events time{font-size:.54rem;line-height:1.6}
+  .count-grid{gap:1.5rem}
+  .timer div{padding:.85rem .25rem}
+  .timer b{font-size:clamp(1.55rem,8vw,2.25rem)}
+  .timer span{font-size:.46rem;letter-spacing:.16em}
+  .venue-info{padding:3.25rem var(--pad)}
+  .venue-info address{font-size:1rem}
+  .mosaic{grid-template-columns:1fr;grid-auto-rows:62vw}
+  .t1,.t4{grid-column:1;grid-row:auto}
+  .lightbox{width:calc(100% - 1rem);max-height:calc(100dvh - 1rem)}
+  .lightbox-panel{max-height:calc(100dvh - 1rem)}
+  .lightbox-image{height:70dvh}
+  .lightbox-nav{width:2.4rem;height:2.4rem}
+  .lightbox-prev{left:.5rem}
+  .lightbox-next{right:.5rem}
+  .lightbox-close{width:2.4rem;height:2.4rem}
+  .lightbox-caption{align-items:flex-start}
+  .rsvp-circle{width:min(82vw,300px);font-size:1.25rem}
+  .rsvp-btns{width:100%;flex-direction:column}
+  .rsvp-btns .btn{width:100%}
+  form{width:100%}
+  input,textarea{font-size:16px}
+  .consent-label{align-items:flex-start}
+  .consent-label input{margin-top:.15rem}
+  .footer{gap:.75rem;padding:1.2rem var(--pad)}
+  .audio-control{right:.75rem;bottom:.75rem;width:3rem;height:3rem}
+  .toast{bottom:.75rem;width:calc(100% - 1.5rem)}
+}
+
+@media (max-width:360px){
+  .hero-names{font-size:3.1rem}
+  .portrait{width:135px}
+  .person h3{font-size:2rem}
+  .timer b{font-size:1.45rem}
+  .timer span{letter-spacing:.08em}
+  .ornament i{width:22px}
+  .intro-blessing-malayalam{max-width:32ch}
+}
+
+@media (max-height:700px){
+  .intro-inner{gap:.55rem;padding:.8rem 1rem}
+  .om{width:clamp(3.5rem,12vh,5rem)}
+  .intro-names{font-size:clamp(2.8rem,12vh,4.8rem)}
+  .intro-blessing-malayalam{margin:.25rem 0}
+  .ornament{margin:-.15rem 0}
+  .intro-inner .btn{padding:.75rem 1.1rem}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}

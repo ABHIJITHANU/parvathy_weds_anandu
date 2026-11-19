@@ -300,32 +300,34 @@
 
   /* ---------- soft music (generated, no audio file needed) ---------- */
   const musicBtn = $('#musicBtn');
-  let ctx, master, playing = false, loop;
-  const scale = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25]; // C major pentatonic-ish
-  const note = () => {
-    const o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = 'sine';
-    o.frequency.value = scale[Math.floor(Math.random() * scale.length)] / (Math.random() > .7 ? 2 : 1);
-    const t = ctx.currentTime;
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(.12, t + .08);
-    g.gain.exponentialRampToValueAtTime(.0001, t + 2.6);
-    o.connect(g); g.connect(master);
-    o.start(t); o.stop(t + 2.7);
-  };
-  musicBtn.addEventListener('click', () => {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return say('Audio is not supported on this browser.');
-    if (!ctx) { ctx = new AC(); master = ctx.createGain(); master.gain.value = .6; master.connect(ctx.destination); }
-    playing = !playing;
-    if (playing) {
-      ctx.resume();
-      note(); loop = setInterval(note, 900);
-      musicBtn.textContent = '❚❚ Pause the record';
-    } else {
-      clearInterval(loop);
-      musicBtn.textContent = '▶ Play the record';
-    }
-    musicBtn.setAttribute('aria-pressed', playing);
-  });
+  if (musicBtn) {
+    let ctx, master, playing = false, loop;
+    const scale = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25]; // C major pentatonic-ish
+    const note = () => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = scale[Math.floor(Math.random() * scale.length)] / (Math.random() > .7 ? 2 : 1);
+      const t = ctx.currentTime;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(.12, t + .08);
+      g.gain.exponentialRampToValueAtTime(.0001, t + 2.6);
+      o.connect(g); g.connect(master);
+      o.start(t); o.stop(t + 2.7);
+    };
+    musicBtn.addEventListener('click', () => {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return say('Audio is not supported on this browser.');
+      if (!ctx) { ctx = new AC(); master = ctx.createGain(); master.gain.value = .6; master.connect(ctx.destination); }
+      playing = !playing;
+      if (playing) {
+        ctx.resume();
+        note(); loop = setInterval(note, 900);
+        musicBtn.textContent = '❚❚ Pause the record';
+      } else {
+        clearInterval(loop);
+        musicBtn.textContent = '▶ Play the record';
+      }
+      musicBtn.setAttribute('aria-pressed', playing);
+    });
+  }
 })();
