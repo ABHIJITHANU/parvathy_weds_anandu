@@ -137,12 +137,50 @@
   const lightboxTitle = $('#lightboxTitle');
   const lightboxCount = $('#lightboxCount');
   const closePhotoViewer = $('.lightbox-close', photoViewer);
+  const lightboxZoom = $('.lightbox-zoom', photoViewer);
+  const photoZoomScale = 1.8;
   let activePhoto = 0;
   let lastPhotoTrigger = null;
+  let panX = 0;
+  let panY = 0;
+  let activePanPointer = null;
+  let panStartX = 0;
+  let panStartY = 0;
+  let panOriginX = 0;
+  let panOriginY = 0;
+  let didPan = false;
+  let suppressImageClick = false;
+  const updatePhotoPan = () => {
+    const width = lightboxImage.clientWidth;
+    const height = lightboxImage.clientHeight;
+    if (!width || !height || !lightboxImage.naturalWidth || !lightboxImage.naturalHeight) {
+      lightboxImage.style.setProperty('--pan-x', '0px');
+      lightboxImage.style.setProperty('--pan-y', '0px');
+      return;
+    }
+    const fitScale = Math.min(width / lightboxImage.naturalWidth, height / lightboxImage.naturalHeight);
+    const maxX = Math.max(0, (lightboxImage.naturalWidth * fitScale * (photoZoomScale - 1)) / 2);
+    const maxY = Math.max(0, (lightboxImage.naturalHeight * fitScale * (photoZoomScale - 1)) / 2);
+    panX = Math.max(-maxX, Math.min(maxX, panX));
+    panY = Math.max(-maxY, Math.min(maxY, panY));
+    lightboxImage.style.setProperty('--pan-x', `${panX}px`);
+    lightboxImage.style.setProperty('--pan-y', `${panY}px`);
+  };
+  const setPhotoZoom = zoomed => {
+    lightboxImage.classList.toggle('zoomed', zoomed);
+    panX = 0;
+    panY = 0;
+    updatePhotoPan();
+    lightboxImage.classList.remove('panning');
+    lightboxZoom.setAttribute('aria-pressed', String(zoomed));
+    lightboxZoom.setAttribute('aria-label', zoomed ? 'Reset image zoom' : 'Zoom in');
+    lightboxZoom.textContent = zoomed ? '−' : '+';
+  };
   const showPhoto = index => {
     activePhoto = (index + photoTiles.length) % photoTiles.length;
     const tile = photoTiles[activePhoto];
     const title = $('figcaption', tile).textContent.trim();
+    setPhotoZoom(false);
     lightboxImage.src = tile.dataset.gallerySrc;
     lightboxImage.alt = title;
     lightboxTitle.textContent = title;
@@ -165,6 +203,47 @@
   });
   $('.lightbox-prev', photoViewer).addEventListener('click', () => showPhoto(activePhoto - 1));
   $('.lightbox-next', photoViewer).addEventListener('click', () => showPhoto(activePhoto + 1));
+  lightboxZoom.addEventListener('click', () => setPhotoZoom(!lightboxImage.classList.contains('zoomed')));
+  lightboxImage.addEventListener('click', () => {
+    if (suppressImageClick) {
+      suppressImageClick = false;
+      return;
+    }
+    setPhotoZoom(!lightboxImage.classList.contains('zoomed'));
+  });
+  lightboxImage.addEventListener('pointerdown', event => {
+    if (!lightboxImage.classList.contains('zoomed') || !event.isPrimary) return;
+    activePanPointer = event.pointerId;
+    panStartX = event.clientX;
+    panStartY = event.clientY;
+    panOriginX = panX;
+    panOriginY = panY;
+    didPan = false;
+    lightboxImage.classList.add('panning');
+    lightboxImage.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+  lightboxImage.addEventListener('pointermove', event => {
+    if (activePanPointer !== event.pointerId) return;
+    const deltaX = event.clientX - panStartX;
+    const deltaY = event.clientY - panStartY;
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) didPan = true;
+    panX = panOriginX + deltaX;
+    panY = panOriginY + deltaY;
+    updatePhotoPan();
+  });
+  lightboxImage.addEventListener('pointerup', event => {
+    if (activePanPointer !== event.pointerId) return;
+    activePanPointer = null;
+    lightboxImage.classList.remove('panning');
+    suppressImageClick = didPan;
+  });
+  lightboxImage.addEventListener('pointercancel', () => {
+    activePanPointer = null;
+    didPan = false;
+    suppressImageClick = false;
+    lightboxImage.classList.remove('panning');
+  });
   closePhotoViewer.addEventListener('click', () => photoViewer.close());
   photoViewer.addEventListener('click', event => {
     if (event.target === photoViewer) photoViewer.close();
