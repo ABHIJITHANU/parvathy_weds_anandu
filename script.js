@@ -3,8 +3,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   // content protection: disable right click, drag, and text selection
-  // document.addEventListener('contextmenu', event => event.preventDefault());
-  // document.addEventListener('dragstart', event => event.preventDefault());
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
   // end
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -242,10 +242,12 @@
   const emailJsTemplateId = 'template_bmeuqhu';
   const emailJsPublicKey = 'AZiGPDpgobvB_N4hd';
   let isSending = false;
+  try { localStorage.removeItem('pa-messages'); } catch {}
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (isSending) return;
-    const { name, phone, message } = form.elements;
+    const { name, phone, message, website, consent } = form.elements;
+    if (website.value) return form.reset();
     let ok = true;
     [name, message].forEach(f => {
       const bad = !f.value.trim();
@@ -255,7 +257,16 @@
     const badPhone = phone.value.trim() && !/^[+\d][\d\s-]{6,}$/.test(phone.value.trim());
     phone.classList.toggle('err', !!badPhone);
     if (badPhone) ok = false;
+    consent.classList.toggle('err', !consent.checked);
+    if (!consent.checked) ok = false;
     if (!ok) return say('Please check the highlighted fields.');
+
+    try {
+      const lastSent = Number(sessionStorage.getItem('pa-message-sent-at') || 0);
+      if (lastSent && Date.now() - lastSent < 30000) {
+        return say('Please wait a moment before sending another message.');
+      }
+    } catch {}
 
     const nameValue = name.value.trim();
     const phoneValue = phone.value.trim();
@@ -280,9 +291,8 @@
       submitButton.textContent = originalButtonText;
     }
 
-    const all = store.get('pa-messages', []);
-    all.push({ name: nameValue, phone: phoneValue, message: messageValue, at: new Date().toISOString() });
-    store.set('pa-messages', all);
+    try { sessionStorage.setItem('pa-message-sent-at', String(Date.now())); } catch {}
+    try { localStorage.removeItem('pa-messages'); } catch {}
     form.reset();
     say('Your message was sent. Thank you for your lovely message ❀');
   });

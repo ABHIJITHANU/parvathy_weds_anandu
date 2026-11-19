@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; media-src 'self'; connect-src 'self' https://api.emailjs.com; frame-src 'none'; form-action 'self' https://api.emailjs.com">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 <title>Parvathy & Anandu · 31 January 2027</title>
 <meta name="description" content="With the blessings of our families, we invite you to celebrate the wedding of Parvathy and Anandu.">
 <meta name="theme-color" content="#9a2323">
@@ -258,13 +261,18 @@
     </div>
     <form id="msgForm" novalidate>
       <label>Your name
-        <input type="text" name="name" placeholder="Full name" required autocomplete="name"></label>
+        <input type="text" name="name" placeholder="Full name" required autocomplete="name" maxlength="100"></label>
       <label>Phone number
-        <input type="tel" name="phone" placeholder="+91 …" autocomplete="tel"></label>
+        <input type="tel" name="phone" placeholder="+91 …" autocomplete="tel" maxlength="30"></label>
       <label>Your message
-        <textarea name="message" rows="3" placeholder="Write us a little note…" required></textarea></label>
+        <textarea name="message" rows="3" placeholder="Write us a little note…" required maxlength="1000"></textarea></label>
+      <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent-label">
+        <input type="checkbox" name="consent" required>
+        I consent to this message and contact details being used to respond to my request.
+      </label>
       <button class="btn btn-gold" type="submit">Send message →</button>
-      <p class="form-note" id="formNote">Your details are used only to reply to your message.</p>
+      <p class="form-note" id="formNote">Your details are used only to reply to your message and are not saved on this device.</p>
     </form>
   </div>
 </section>
@@ -281,7 +289,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="petals" id="petals" aria-hidden="true"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5.0.3/dist/email.min.js" integrity="sha384-fVBN3OfGKDU4lDZsc0RssV/ZK08AXvHqin023KUTrDojbrGtReubBIdEZJdqx8D+" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>
