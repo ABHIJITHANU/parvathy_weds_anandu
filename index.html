@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Parvathy &amp; Anandu Wedding | 31 January 2027 | Thiruvananthapuram</title>
-<meta name="description" content="Join Parvathy and Anandu for their wedding celebration on 31 January 2027 at TK Convention Centre, Pothencode, Thiruvananthapuram. View the invitation, event schedule, venue and gallery.">
+<meta name="description" content="Celebrate the wedding of Anandu R. Nair and Parvathy R S on 31 January 2027 in Thiruvananthapuram, Kerala. View our wedding invitation, venue, event details, photos and RSVP.">
 <meta name="keywords" content="Parvathy Anandu wedding, Parvathy and Anandu, Kerala wedding, TK Convention Centre, Pothencode wedding, Thiruvananthapuram wedding, 31 January 2027">
 <meta name="author" content="Parvathy and Anandu">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -105,6 +105,9 @@
 <button class="audio-control" id="introAudioBtn" type="button" aria-label="Play wedding music" aria-pressed="false">
   <span class="audio-play-icon" aria-hidden="true"></span>
   <span class="audio-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+</button>
+<button class="gift-control" id="giftBtn" type="button" aria-label="Open wedding gift QR codes" aria-haspopup="dialog" aria-controls="giftDialog">
+  <img class="gift-box-art" src="assets/giftbox.gif" alt="" aria-hidden="true">
 </button>
 
 <!-- ============ NAV ============ -->
@@ -238,19 +241,39 @@
   <div class="wrap">
     <p class="label reveal"><em>04</em> Mark your calendar</p>
     <div class="events-head">
-      <h2 class="display reveal">A day in <i>three movements.</i></h2>
+      <h2 class="display reveal">Two days of <i>joy & celebration.</i></h2>
       <p class="side-note reveal">Keep the date close. Every moment has been planned with love.</p>
+    </div>
+    <div class="celebration-days">
+      <article class="celebration-card reveal">
+        <div class="celebration-ornament" aria-hidden="true">✦</div>
+        <p class="celebration-kind">Wedding Day</p>
+        <h3>31<sup>st</sup> January 2027</h3>
+        <p class="celebration-weekday">Sunday</p>
+        <div class="celebration-divider" aria-hidden="true"><span></span><b>❋</b><span></span></div>
+        <p class="celebration-time">10:30 AM Onwards</p>
+        <canvas class="scratch-canvas" aria-label="Scratch to reveal the wedding date and time" role="button" tabindex="0"></canvas>
+      </article>
+      <article class="celebration-card reception reveal">
+        <div class="celebration-ornament" aria-hidden="true">✦</div>
+        <p class="celebration-kind">Reception Day</p>
+        <h3>1<sup>st</sup> February 2027</h3>
+        <p class="celebration-weekday">Monday</p>
+        <div class="celebration-divider" aria-hidden="true"><span></span><b>❋</b><span></span></div>
+        <p class="celebration-time">5:30 PM Onwards</p>
+        <canvas class="scratch-canvas" aria-label="Scratch to reveal the reception date and time" role="button" tabindex="0"></canvas>
+      </article>
     </div>
     <ul class="events">
       <li class="reveal"><span class="num">01</span>
         <div><h3>Sweekaranam</h3><p>A warm beginning with family, laughter and blessings.</p></div>
-        <time>31 Jan 2027 · 10:30 AM Onwards</time></li>
+        <time>10:30 AM Onwards</time></li>
       <li class="reveal"><span class="num">02</span>
         <div><h3>Muhurtham</h3><p>The sacred wedding ceremony in the presence of the divine.</p></div>
-        <time>31 Jan 2027 · 11:00 AM – 12:25 PM</time></li>
+        <time>11:00 AM – 12:25 PM</time></li>
       <li class="reveal"><span class="num">03</span>
         <div><h3>The Gathering</h3><p>Join us for a meal, music and the joy of being together.</p></div>
-        <time>31 Jan 2027 · 12:30 PM onwards</time></li>
+        <time>12:30 PM onwards</time></li>
     </ul>
   </div>
 </section>
@@ -370,6 +393,25 @@
   <span class="foot-right">With love, always.
     <!-- <button id="musicBtn" aria-pressed="false">▶ Play the record</button></span> -->
 </footer>
+
+<dialog class="gift-dialog" id="giftDialog" aria-labelledby="giftTitle">
+  <div class="gift-dialog-panel">
+    <button class="gift-dialog-close" type="button" aria-label="Close gift popup">×</button>
+    <p class="gift-dialog-eyebrow">A little token of love</p>
+    <h2 class="gift-dialog-title" id="giftTitle">Wedding Gifts</h2>
+    <div class="payment-qr-grid">
+      <figure class="payment-qr-card">
+        <img src="assets/bride_payment.png" alt="Payment QR code for the bride" width="300" height="300">
+        <figcaption>For the Bride <strong>Parvathy</strong></figcaption>
+      </figure>
+      <figure class="payment-qr-card">
+        <img src="assets/groom_payment.png" alt="Payment QR code for the groom" width="300" height="300">
+        <figcaption>For the Groom <strong>Anandu</strong></figcaption>
+      </figure>
+    </div>
+    <p class="gift-dialog-note">Your presence would be the greatest gift we could receive!</p>
+  </div>
+</dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="petals" id="petals" aria-hidden="true"></div>
