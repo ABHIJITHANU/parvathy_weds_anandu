@@ -846,7 +846,7 @@ i {
 
 /* ---------- family invitation ---------- */
 .family-invitation {
-  background: var(--cream);
+  background: var(--cream-2);
 }
 .family-card {
   position: relative;
@@ -1103,6 +1103,49 @@ i {
   letter-spacing: 0.19em;
   text-transform: uppercase;
 }
+ #events {
+  overflow: hidden;
+  padding-bottom: clamp(8rem, 14vw, 12rem);
+}
+/* .wedding-procession {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  width: min(44vw, 560px);
+  pointer-events: none;
+  will-change: transform;
+}
+.wedding-procession img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 100%;
+  animation: procession-dance 900ms ease-in-out infinite;
+}
+@keyframes procession-dance {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0.35deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-0.35deg);
+  }
+}
+@media (max-width: 700px) {
+  #events {
+    padding-bottom: clamp(6.5rem, 38vw, 10rem);
+  }
+  .wedding-procession {
+    width: min(78vw, 420px);
+  }
+} */
 .events {
   list-style: none;
   border-top: 1px solid rgba(43, 20, 20, 0.2);
@@ -1726,21 +1769,6 @@ form .btn {
   height: 1px !important;
   overflow: hidden !important;
 }
-.consent-label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.65rem;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-  text-transform: none;
-}
-.consent-label input {
-  width: 1rem;
-  height: 1rem;
-  flex: none;
-  margin-top: 0.25rem;
-}
 
 /* ---------- footer ---------- */
 .footer {
@@ -1760,6 +1788,28 @@ form .btn {
   display: flex;
   align-items: center;
   gap: 1.4rem;
+}
+.foot-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.designer-credit {
+  letter-spacing: 0.12em;
+  text-transform: none;
+}
+.designer-credit a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.designer-credit a:hover,
+.designer-credit a:focus-visible {
+  color: var(--gold);
 }
 /* #musicBtn{border:1px solid rgba(241,234,214,.4);padding:.5rem .9rem;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;transition:.3s}
 #musicBtn:hover,#musicBtn[aria-pressed="true"]{background:var(--gold);color:#4a1c10;border-color:var(--gold)} */
@@ -2298,12 +2348,6 @@ form .btn {
   input,
   textarea {
     font-size: 16px;
-  }
-  .consent-label {
-    align-items: flex-start;
-  }
-  .consent-label input {
-    margin-top: 0.15rem;
   }
   .footer {
     gap: 0.75rem;
