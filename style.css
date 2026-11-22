@@ -1185,10 +1185,22 @@ i {
 
 /* ---------- venue ---------- */
 .venue {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
   background: var(--maroon);
   color: var(--cream);
+  min-height: 520px;
+}
+.venue-track {
+  display: flex;
+  width: 200%;
+  transition: transform 0.75s var(--ease);
+}
+.venue-slide {
+  display: grid;
+  flex: 0 0 50%;
+  grid-template-columns: 1fr 1fr;
+  min-width: 0;
   min-height: 520px;
 }
 .venue-art {
@@ -1241,7 +1253,7 @@ i {
   color: var(--gold);
 }
 .venue-info {
-  padding: clamp(3rem, 7vw, 6rem) var(--pad);
+  padding: clamp(3rem, 7vw, 6rem) var(--pad) 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1249,6 +1261,51 @@ i {
 }
 .venue-info .label {
   margin-bottom: 2.5rem;
+}
+.venue-controls {
+  position: absolute;
+  left: var(--pad);
+  bottom: 1.4rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 2rem;
+  background: rgba(43, 20, 20, 0.78);
+  backdrop-filter: blur(4px);
+}
+.venue-arrow {
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  place-items: center;
+  border: 1px solid rgba(217, 174, 106, 0.72);
+  border-radius: 50%;
+  color: var(--cream);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+.venue-arrow:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--maroon);
+}
+.venue-arrow:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+.venue-slide-status {
+  min-width: 145px;
+  color: var(--gold-soft);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
 }
 address {
   font-family: var(--serif);
@@ -1972,7 +2029,7 @@ form .btn {
     align-items: flex-start;
     gap: 1.2rem;
   }
-  .venue {
+  .venue-slide {
     grid-template-columns: 1fr;
   }
   .venue-art {
@@ -2183,7 +2240,7 @@ form .btn {
     letter-spacing: 0.16em;
   }
   .venue-info {
-    padding: 3.25rem var(--pad);
+    padding: 3.25rem var(--pad) 6rem;
   }
   .venue-info address {
     font-size: 1rem;
