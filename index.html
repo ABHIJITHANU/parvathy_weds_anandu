@@ -295,18 +295,39 @@
 </section>
 
 <!-- ============ VENUE ============ -->
-<section class="venue" id="venue">
-  <div class="venue-art reveal">
-    <!-- <div class="venue-seal"><b>TK</b><span>Venue</span></div> -->
-     <img class="venue-img" src="assets/venue.webp" alt="TK Convention Centre venue at Pothencode, Thiruvananthapuram" width="1200" height="800" loading="lazy">
+<section class="venue" id="venue" role="region" aria-label="Wedding and reception venues" aria-roledescription="carousel">
+  <div class="venue-track" id="venueTrack">
+    <article class="venue-slide" role="group" aria-roledescription="slide" aria-label="Wedding venue" aria-hidden="false">
+      <div class="venue-art reveal">
+        <img class="venue-img" src="assets/venue.webp" alt="TK Convention Centre venue at Pothencode, Thiruvananthapuram" width="1200" height="800" loading="lazy">
+      </div>
+      <div class="venue-info">
+        <p class="label light reveal"><em>05</em> Find us</p>
+        <p class="role gold reveal">Wedding Venue</p>
+        <h2 class="display light reveal">TK Convention <i>Centre</i></h2>
+        <address class="reveal">Venjaramooda Road<br>Pothencode, Thiruvananthapuram<br>Kerala 695615</address>
+        <a class="btn btn-gold reveal" target="_blank" rel="noopener"
+           href="https://maps.app.goo.gl/iaoRxa6siQusq57Z7">Get directions ↗</a>
+      </div>
+    </article>
+    <article class="venue-slide" role="group" aria-roledescription="slide" aria-label="Reception venue" aria-hidden="true" inert>
+      <div class="venue-art reveal">
+        <img class="venue-img" src="assets/reception_venue.webp" alt="Pournami Auditorium in Kalanjoor, the reception venue" width="1457" height="720" loading="lazy">
+      </div>
+      <div class="venue-info">
+        <p class="label light reveal"><em>05</em> Find us</p>
+        <p class="role gold reveal">Reception Venue</p>
+        <h2 class="display light reveal">Pournami <i>Auditorium</i></h2>
+        <address class="reveal">Kalanjoor, Kerala</address>
+        <a class="btn btn-gold reveal" target="_blank" rel="noopener"
+           href="https://maps.app.goo.gl/qSd7Tay7UWjos8zk6">Get directions ↗</a>
+      </div>
+    </article>
   </div>
-  <div class="venue-info">
-    <p class="label light reveal"><em>05</em> Find us</p>
-    <p class="role gold reveal">The Venue</p>
-    <h2 class="display light reveal">TK Convention <i>Centre</i></h2>
-    <address class="reveal">Venjaramooda Road<br>Pothencode, Thiruvananthapuram<br>Kerala 695615</address>
-    <a class="btn btn-gold reveal" target="_blank" rel="noopener"
-       href="https://maps.app.goo.gl/iaoRxa6siQusq57Z7">Get directions ↗</a>
+  <div class="venue-controls" aria-label="Venue navigation">
+    <button class="venue-arrow" id="venuePrevious" type="button" aria-label="Show wedding venue" aria-controls="venueTrack">‹</button>
+    <span class="venue-slide-status" id="venueSlideStatus" aria-live="polite" aria-atomic="true">Wedding venue · 1 of 2</span>
+    <button class="venue-arrow" id="venueNext" type="button" aria-label="Show reception venue" aria-controls="venueTrack">›</button>
   </div>
 </section>
 
@@ -320,7 +341,7 @@
     </div>
     <div class="mosaic">
       <figure class="tile t1 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: The invitation" data-gallery-src="assets/marriage_letter.jpeg" style="--img:url(assets/marriage_letter.jpeg)"><figcaption>The invitation</figcaption></figure>
-      <figure class="tile t2 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: A new chapter" data-gallery-src="assets/pr_1.webp" style="--img:url(assets/pr_1.webp)"><figcaption>A new chapter</figcaption></figure>
+      <figure class="tile t2 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: A new chapter" data-gallery-src="assets/pr_1.jpeg" style="--img:url(assets/pr_1.jpeg)"><figcaption>A new chapter</figcaption></figure>
       <figure class="tile t3 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Forever begins" data-gallery-src="assets/pr_3.webp" style="--img:url(assets/pr_3.webp)"><figcaption>Forever begins</figcaption></figure>
       <figure class="tile t4 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Joy in bloom" data-gallery-src="assets/anandu_family.webp" style="--img:url(assets/anandu_family.webp)"><figcaption>Joy in bloom</figcaption></figure>
       <figure class="tile t5 reveal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="photoViewer" aria-label="View photo: Celebrate" data-gallery-src="assets/parvathy_family.webp" style="--img:url(assets/parvathy_family.webp)"><figcaption>Celebrate</figcaption></figure>
@@ -401,12 +422,12 @@
     <h2 class="gift-dialog-title" id="giftTitle">Wedding Gifts</h2>
     <div class="payment-qr-grid">
       <figure class="payment-qr-card">
-        <img src="assets/bride_payment.png" alt="Payment QR code for the bride" width="300" height="300">
-        <figcaption>For the Bride <strong>Parvathy</strong></figcaption>
+        <img src="assets/bride_payment.jpeg" alt="Payment QR code for the bride" width="300" height="300">
+        <figcaption>For the Bride</figcaption>
       </figure>
       <figure class="payment-qr-card">
-        <img src="assets/groom_payment.png" alt="Payment QR code for the groom" width="300" height="300">
-        <figcaption>For the Groom <strong>Anandu</strong></figcaption>
+        <img src="assets/groom_payment.jpeg" alt="Payment QR code for the groom" width="300" height="300">
+        <figcaption>For the Groom</figcaption>
       </figure>
     </div>
     <p class="gift-dialog-note">Your presence would be the greatest gift we could receive!</p>

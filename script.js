@@ -151,6 +151,50 @@
     if (e.key === "Escape") setMenu(false);
   });
 
+  /* ---------- venue carousel ---------- */
+  const venueTrack = $("#venueTrack");
+  const venueSlides = $$(".venue-slide", venueTrack);
+  const venueSlideStatus = $("#venueSlideStatus");
+  let activeVenueSlide = 0;
+  const showVenueSlide = (index) => {
+    activeVenueSlide = (index + venueSlides.length) % venueSlides.length;
+    venueTrack.style.transform = `translateX(-${activeVenueSlide * 50}%)`;
+    venueSlides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === activeVenueSlide;
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.inert = !isActive;
+    });
+    const activeSlide = venueSlides[activeVenueSlide];
+    const venueName = activeSlide.getAttribute("aria-label");
+    const previousVenueName = venueSlides[
+      (activeVenueSlide + venueSlides.length - 1) % venueSlides.length
+    ]
+      .getAttribute("aria-label")
+      .toLowerCase();
+    const nextVenueName = venueSlides[
+      (activeVenueSlide + 1) % venueSlides.length
+    ]
+      .getAttribute("aria-label")
+      .toLowerCase();
+    venueSlideStatus.textContent =
+      `${venueName} · ${activeVenueSlide + 1} of ${venueSlides.length}`;
+    $("#venuePrevious").setAttribute(
+      "aria-label",
+      `Show ${previousVenueName}`,
+    );
+    $("#venueNext").setAttribute(
+      "aria-label",
+      `Show ${nextVenueName}`,
+    );
+  };
+  $("#venuePrevious").addEventListener("click", () =>
+    showVenueSlide(activeVenueSlide - 1),
+  );
+  $("#venueNext").addEventListener("click", () =>
+    showVenueSlide(activeVenueSlide + 1),
+  );
+  showVenueSlide(0);
+
   /* ---------- scroll reveal ---------- */
   const io =
     "IntersectionObserver" in window
