@@ -3,8 +3,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   // content protection: disable right click, drag, and text selection
-  // document.addEventListener("contextmenu", (event) => event.preventDefault());
-  // document.addEventListener("dragstart", (event) => event.preventDefault());
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
+  document.addEventListener("dragstart", (event) => event.preventDefault());
   // end
   const store = {
     get(k, d) {
