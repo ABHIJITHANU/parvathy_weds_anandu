@@ -1105,9 +1105,9 @@ i {
 }
  #events {
   overflow: hidden;
-  padding-bottom: clamp(8rem, 14vw, 12rem);
+  padding-bottom: clamp(8rem, 9vw, 12rem);
 }
-/* .wedding-procession {
+.wedding-procession {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1115,29 +1115,16 @@ i {
   width: min(44vw, 560px);
   pointer-events: none;
   will-change: transform;
+  margin-bottom: -6px;
 }
 .wedding-procession img {
   display: block;
-  width: 100%;
+  width: 75%;
   height: auto;
   transform-origin: 50% 100%;
   animation: procession-dance 900ms ease-in-out infinite;
 }
-@keyframes procession-dance {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0);
-  }
-  25% {
-    transform: translateY(-5px) rotate(0.35deg);
-  }
-  50% {
-    transform: translateY(0) rotate(0);
-  }
-  75% {
-    transform: translateY(-3px) rotate(-0.35deg);
-  }
-}
+
 @media (max-width: 700px) {
   #events {
     padding-bottom: clamp(6.5rem, 38vw, 10rem);
@@ -1145,7 +1132,7 @@ i {
   .wedding-procession {
     width: min(78vw, 420px);
   }
-} */
+}
 .events {
   list-style: none;
   border-top: 1px solid rgba(43, 20, 20, 0.2);

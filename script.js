@@ -3,8 +3,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   // content protection: disable right click, drag, and text selection
-  document.addEventListener("contextmenu", (event) => event.preventDefault());
-  document.addEventListener("dragstart", (event) => event.preventDefault());
+  // document.addEventListener("contextmenu", (event) => event.preventDefault());
+  // document.addEventListener("dragstart", (event) => event.preventDefault());
   // end
   const store = {
     get(k, d) {
@@ -648,37 +648,37 @@
   );
 
   /* ---------- wedding procession ---------- */
-  // const weddingProcession = $("#weddingProcession");
-  // if (
-  //   weddingProcession &&
-  //   !matchMedia("(prefers-reduced-motion: reduce)").matches
-  // ) {
-  //   let processionPosition = window.innerWidth + 20;
-  //   let previousTime = performance.now();
-  //   const pixelsPerSecond = 37.795;
+  const weddingProcession = $("#weddingProcession");
+  if (
+    weddingProcession &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    let processionPosition = window.innerWidth + 20;
+    let previousTime = performance.now();
+    const pixelsPerSecond = 50;
 
-  //   const moveProcession = (currentTime) => {
-  //     const elapsedSeconds = Math.min(
-  //       (currentTime - previousTime) / 1000,
-  //       0.05,
-  //     );
-  //     previousTime = currentTime;
-  //     processionPosition -= pixelsPerSecond * elapsedSeconds;
+    const moveProcession = (currentTime) => {
+      const elapsedSeconds = Math.min(
+        (currentTime - previousTime) / 1000,
+        0.05,
+      );
+      previousTime = currentTime;
+      processionPosition -= pixelsPerSecond * elapsedSeconds;
 
-  //     if (
-  //       processionPosition <
-  //       -weddingProcession.offsetWidth
-  //     ) {
-  //       processionPosition = window.innerWidth + 20;
-  //     }
+      if (
+        processionPosition <
+        -weddingProcession.offsetWidth
+      ) {
+        processionPosition = window.innerWidth + 20;
+      }
 
-  //     weddingProcession.style.transform =
-  //       `translate3d(${processionPosition}px, 0, 0)`;
-  //     requestAnimationFrame(moveProcession);
-  //   };
+      weddingProcession.style.transform =
+        `translate3d(${processionPosition}px, 0, 0)`;
+      requestAnimationFrame(moveProcession);
+    };
 
-  //   weddingProcession.style.transform =
-  //     `translate3d(${processionPosition}px, 0, 0)`;
-  //   requestAnimationFrame(moveProcession);
-  // }
+    weddingProcession.style.transform =
+      `translate3d(${processionPosition}px, 0, 0)`;
+    requestAnimationFrame(moveProcession);
+  }
 })();
